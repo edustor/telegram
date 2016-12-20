@@ -6,9 +6,9 @@ import com.pengrad.telegrambot.model.Update
 import com.pengrad.telegrambot.request.AbstractSendRequest
 import com.pengrad.telegrambot.request.GetFile
 import com.pengrad.telegrambot.request.SendMessage
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import ru.edustor.commons.api.UploadApi
-import ru.edustor.telegram.bot.TelegramHandler
 import ru.edustor.telegram.repository.ProfileRepository
 import ru.edustor.telegram.util.extension.cid
 import ru.edustor.telegram.util.extension.replyText
@@ -16,15 +16,22 @@ import ru.edustor.telegram.util.extension.replyText
 @Service
 open class TelegramEventsRouter(val bot: TelegramBot,
                                 val profileRepository: ProfileRepository,
-                                val uploadApi: UploadApi) {
+                                val uploadApi: UploadApi,
+                                @Autowired(required = false) handlerBeans: Collection<TelegramHandler>?) {
 
     private val commandRegex = "/(\\w*)".toRegex()
 
     val handlers = mutableMapOf<String, TelegramHandler>()
 
-    fun registerCommand(command: String, handler: TelegramHandler) {
-        if (handlers.containsKey(command)) throw IllegalStateException("TelegramHandler $command redeclaration")
-        handlers[command] = handler
+    init {
+        handlerBeans?.forEach {
+            registerCommand(it)
+        }
+    }
+
+    private fun registerCommand(handler: TelegramHandler) {
+        if (handlers.containsKey(handler.COMMAND)) throw IllegalStateException("TelegramHandler ${handler.COMMAND} redeclaration")
+        handlers[handler.COMMAND] = handler
     }
 
     fun processUpdate(update: Update) {

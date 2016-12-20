@@ -16,15 +16,16 @@ import ru.edustor.telegram.util.extension.replyText
 @Service
 open class TelegramEventsRouter(val bot: TelegramBot,
                                 val profileRepository: ProfileRepository,
-                                val uploadApi: UploadApi,
-                                @Autowired(required = false) handlerBeans: Collection<TelegramHandler>?) {
+                                val uploadApi: UploadApi) {
 
     private val commandRegex = "/(\\w*)".toRegex()
 
     val handlers = mutableMapOf<String, TelegramHandler>()
 
-    init {
-        handlerBeans?.forEach {
+
+    @Autowired(required = false)
+    fun registerCommands(handlerBeans: Collection<TelegramHandler>) {
+        handlerBeans.forEach {
             registerCommand(it)
         }
     }

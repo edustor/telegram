@@ -5,7 +5,7 @@ import java.time.Instant
 buildscript {
     ext.kotlin_version = '1.0.5-2'
     ext.spring_boot_version = '1.4.1.RELEASE'
-    ext.edustor_commons_version = '45050d7'
+    ext.edustor_commons_version = '106ef70'
     repositories {
         mavenCentral()
     }
@@ -69,8 +69,9 @@ processResources.finalizedBy createProperties
 
 dependencies {
     compile "ru.edustor.commons:rabbit:$edustor_commons_version"
-    compile "ru.edustor.commons:model:$edustor_commons_version"
+    compile "ru.edustor.commons:models:$edustor_commons_version"
     compile "ru.edustor.commons:api:$edustor_commons_version"
+    compile "ru.edustor.commons:exceptions:$edustor_commons_version"
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile "org.springframework.boot:spring-boot-autoconfigure"

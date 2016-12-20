@@ -1,3 +1,7 @@
 edustor:
   telegram:
     token:
+  api:
+    token:
+    upload:
+      url:

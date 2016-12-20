@@ -1,8 +1,7 @@
-.gradle
-build/
-
 .idea/
-/out/
+.gradle/
+build/
+out/
+classes/
 
-/classes/
 /application.yaml

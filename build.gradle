@@ -53,7 +53,9 @@ ext {
 
 task createProperties(dependsOn: processResources) {
     doLast {
-        new File("$buildDir/resources/main/build.properties").withWriter { w ->
+        def buildPropFile = new File("$buildDir/resources/main/build.properties")
+        buildPropFile.parentFile.mkdirs()
+        buildPropFile.withWriter { w ->
             def p = new Properties()
             p['edustor.build.version'] = "${project.version}-$shortCommitId".toString()
             p['edustor.build.date'] = Instant.now().toString()
@@ -71,6 +73,7 @@ dependencies {
     compile "ru.edustor.commons:api:$edustor_commons_version"
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.springframework.boot:spring-boot-autoconfigure"
     compile "org.springframework.boot:spring-boot-starter-logging"
     compile "org.springframework.boot:spring-boot-starter-amqp"
     compile 'com.github.pengrad:java-telegram-bot-api:2.1.1'

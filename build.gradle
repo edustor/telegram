@@ -36,7 +36,7 @@ repositories {
 //noinspection GroovyAssignabilityCheck
 jar {
     destinationDir = new File(buildDir, "/dist")
-    archiveName = "edustor.jar"
+    archiveName = "edustor-telegram.jar"
 }
 
 test {

@@ -68,6 +68,7 @@ task createProperties(dependsOn: processResources) {
 processResources.finalizedBy createProperties
 
 dependencies {
+    compile "ru.edustor.commons:auth:$edustor_commons_version"
     compile "ru.edustor.commons:rabbit:$edustor_commons_version"
     compile "ru.edustor.commons:models:$edustor_commons_version"
     compile "ru.edustor.commons:api:$edustor_commons_version"

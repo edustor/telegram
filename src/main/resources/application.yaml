@@ -6,5 +6,8 @@ spring:
       hibernate:
         ddl-auto: update
       generate-ddl: true
+  data:
+    mongodb:
+      database: edustor-telegram
 flyway:
   validate-on-migrate: false

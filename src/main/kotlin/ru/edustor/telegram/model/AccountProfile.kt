@@ -1,11 +1,11 @@
 package ru.edustor.telegram.model
 
+import org.springframework.data.annotation.Id
+import org.springframework.data.annotation.Transient
+import org.springframework.data.mongodb.core.mapping.Document
 import ru.edustor.commons.models.internal.accounts.EdustorAccount
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Transient
 
-@Entity
+@Document
 class AccountProfile() {
     @Id lateinit var accountId: String
     var telegramChatId: String? = null

@@ -1,10 +1,4 @@
 spring:
-  datasource:
-      url: jdbc:postgresql://localhost:5432/edustor_telegram
-      username: postgres
-  jpa:
-      hibernate:
-        ddl-auto: update
-      generate-ddl: true
-flyway:
-  validate-on-migrate: false
+  data:
+    mongodb:
+      database: edustor-telegram

@@ -2,7 +2,7 @@ package ru.edustor.telegram.rest
 
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import ru.edustor.commons.auth.assertScopeContains
+import ru.edustor.commons.auth.annotation.RequiresAuth
 import ru.edustor.telegram.model.AccountProfile
 import ru.edustor.telegram.repository.ProfileRepository
 import java.util.*
@@ -12,8 +12,8 @@ import java.util.*
 class LinkRestController(val profileRepository: ProfileRepository) {
 
     @RequestMapping("link")
+    @RequiresAuth("interactive")
     fun getTelegramLink(profile: AccountProfile): String {
-        profile.account!!.assertScopeContains("interactive")
 
         val token = UUID.randomUUID().toString()
         profile.telegramLinkToken = token

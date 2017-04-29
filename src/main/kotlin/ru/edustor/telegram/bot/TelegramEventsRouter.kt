@@ -8,7 +8,7 @@ import com.pengrad.telegrambot.request.GetFile
 import com.pengrad.telegrambot.request.SendMessage
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.edustor.commons.api.UploadApi
+import ru.edustor.commons.api.StorageApi
 import ru.edustor.telegram.repository.ProfileRepository
 import ru.edustor.telegram.util.extension.cid
 import ru.edustor.telegram.util.extension.replyText
@@ -16,7 +16,7 @@ import ru.edustor.telegram.util.extension.replyText
 @Service
 open class TelegramEventsRouter(val bot: TelegramBot,
                                 val profileRepository: ProfileRepository,
-                                val uploadApi: UploadApi) {
+                                val storageApi: StorageApi) {
 
     private val commandRegex = "/(\\w*)".toRegex()
 
@@ -52,7 +52,7 @@ open class TelegramEventsRouter(val bot: TelegramBot,
                 bot.execute(msg.replyText("Forwarding file to upload server..."))
 
                 val resp = try {
-                    uploadApi.uploadPdfByUrl(url, profile.accountId).execute()
+                    storageApi.uploadPdfByUrl(url, profile.accountId).execute()
                 } catch (e: Exception) {
                     bot.execute(msg.replyText("Exception occurred: $e"))
                     return

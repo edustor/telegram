@@ -1,11 +1,11 @@
 package ru.edustor.telegram.repository;
 
-import org.springframework.data.mongodb.repository.MongoRepository
+import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 import ru.edustor.telegram.model.AccountProfile
 
 @Repository
-interface ProfileRepository : MongoRepository<AccountProfile, String> {
+interface ProfileRepository : JpaRepository<AccountProfile, String> {
     fun findByTelegramLinkToken(token: String): AccountProfile?
     fun findByTelegramChatId(token: String): AccountProfile?
 }

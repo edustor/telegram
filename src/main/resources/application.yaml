@@ -1,4 +1,8 @@
 spring:
-  data:
-    mongodb:
-      database: edustor-telegram
+  datasource:
+    url: jdbc:postgresql://localhost:5432/edustor_telegram
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql

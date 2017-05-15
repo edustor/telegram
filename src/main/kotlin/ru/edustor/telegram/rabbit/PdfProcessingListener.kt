@@ -3,8 +3,8 @@ package ru.edustor.telegram.rabbit
 import org.springframework.amqp.core.ExchangeTypes
 import org.springframework.amqp.rabbit.annotation.*
 import org.springframework.stereotype.Component
-import ru.edustor.commons.models.internal.processing.pdf.PageProcessedEvent
-import ru.edustor.commons.models.internal.processing.pdf.PdfUploadedEvent
+import ru.edustor.commons.models.rabbit.processing.pages.PageProcessedEvent
+import ru.edustor.commons.models.rabbit.processing.pages.PdfUploadedEvent
 import ru.edustor.telegram.repository.ProfileRepository
 import ru.edustor.telegram.repository.getForAccountId
 import ru.edustor.telegram.service.TelegramService
